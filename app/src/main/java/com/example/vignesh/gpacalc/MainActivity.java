@@ -132,12 +132,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             su = su + Float.parseFloat(data.getStringExtra("sum"));
             cr = cr + Integer.parseInt(data.getStringExtra("credit"));
             if(sems1==1) {
-                Intent i = new Intent(MainActivity.this, Main6Activity.class);
-                String su1 = String.format("%f",su);
-                String cr1 = String.format("%d",cr);
-                i.putExtra("sum",su1);
-                i.putExtra("credit",cr1);
-                startActivity(i);
+              showresult();
             }
 
         }
@@ -145,84 +140,49 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             su = su + Float.parseFloat(data.getStringExtra("sum"));
             cr = cr + Integer.parseInt(data.getStringExtra("credit"));
             if(sems1==2) {
-                Intent i = new Intent(MainActivity.this, Main6Activity.class);
-                String su1 = String.format("%f",su);
-                String cr1 = String.format("%d",cr);
-                i.putExtra("sum",su1);
-                i.putExtra("credit",cr1);
-                startActivity(i);
+              showresult();
             }
         }
         if (resultCode == 3) {
             su = su + Float.parseFloat(data.getStringExtra("sum"));
             cr = cr + Integer.parseInt(data.getStringExtra("credit"));
             if(sems1==3) {
-                Intent i = new Intent(MainActivity.this, Main6Activity.class);
-                String su1 = String.format("%f",su);
-                String cr1 = String.format("%d",cr);
-                i.putExtra("sum",su1);
-                i.putExtra("credit",cr1);
-                startActivity(i);
+                showresult();
             }
         }
         if (resultCode == 4) {
             su = su + Float.parseFloat(data.getStringExtra("sum"));
             cr = cr + Integer.parseInt(data.getStringExtra("credit"));
             if(sems1==4) {
-                Intent i = new Intent(MainActivity.this, Main6Activity.class);
-                String su1 = String.format("%f",su);
-                String cr1 = String.format("%d",cr);
-                i.putExtra("sum",su1);
-                i.putExtra("credit",cr1);
-                startActivity(i);
+              showresult();
             }
         }
         if (resultCode == 5) {
             su = su + Float.parseFloat(data.getStringExtra("sum"));
             cr = cr + Integer.parseInt(data.getStringExtra("credit"));
             if(sems1==5) {
-                Intent i = new Intent(MainActivity.this, Main6Activity.class);
-                String su1 = String.format("%f",su);
-                String cr1 = String.format("%d",cr);
-                i.putExtra("sum",su1);
-                i.putExtra("credit",cr1);
-                startActivity(i);
+          showresult();
             }
         }
         if (resultCode == 6) {
             su = su + Float.parseFloat(data.getStringExtra("sum"));
             cr = cr + Integer.parseInt(data.getStringExtra("credit"));
             if(sems1==6) {
-                Intent i = new Intent(MainActivity.this, Main6Activity.class);
-                String su1 = String.format("%f",su);
-                String cr1 = String.format("%d",cr);
-                i.putExtra("sum",su1);
-                i.putExtra("credit",cr1);
-                startActivity(i);
+           showresult();
             }
         }
         if (resultCode == 7) {
             su = su + Float.parseFloat(data.getStringExtra("sum"));
             cr = cr + Integer.parseInt(data.getStringExtra("credit"));
             if(sems1==7) {
-                Intent i = new Intent(MainActivity.this, Main6Activity.class);
-                String su1 = String.format("%f",su);
-                String cr1 = String.format("%d",cr);
-                i.putExtra("sum",su1);
-                i.putExtra("credit",cr1);
-                startActivity(i);
+             showresult();
             }
         }
         if (resultCode == 8) {
             su = su + Float.parseFloat(data.getStringExtra("sum"));
             cr = cr + Integer.parseInt(data.getStringExtra("credit"));
             if(sems1==8) {
-                Intent i = new Intent(MainActivity.this, Main6Activity.class);
-                String su1 = String.format("%f",su);
-                String cr1 = String.format("%d",cr);
-                i.putExtra("sum",su1);
-                i.putExtra("credit",cr1);
-                startActivity(i);
+               showresult();
             }
         }
     }
@@ -234,6 +194,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public boolean onCreateOptionsMenu(Menu men){
         getMenuInflater().inflate(R.menu.main_menu, men);
         return true;
+    }
+    public void showresult()
+    {
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+        radioButton = (RadioButton) findViewById(selectedId);
+        String mode1 = radioButton.getText().toString();
+        Intent i = new Intent(MainActivity.this, Main6Activity.class);
+        String su1 = String.format("%f",su);
+        String cr1 = String.format("%d",cr);
+        i.putExtra("sum",su1);
+        i.putExtra("credit",cr1);
+        i.putExtra("mode",mode1);
+        startActivity(i);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
