@@ -96,7 +96,7 @@ public class Main3Activity extends AppCompatActivity implements dialogbox.dialog
         editor.putString("name",name.toString());
         editor.putString("regno",regno.toString());
         editor.putString("gpa",dep.toString());
-        editor.putString("sem",sem.toString());
+  //      editor.putString("sem",sem.toString());
         editor.apply();
         Toast.makeText(getApplicationContext(),"save successfull",Toast.LENGTH_SHORT).show();
     }
