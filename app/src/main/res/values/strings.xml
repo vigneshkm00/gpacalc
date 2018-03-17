@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">GPA Calculator</string>
+    <string name="open">OPEN</string>
+    <string name="close">CLOSE</string>
     <string-array name="grades">
         <item>S</item>
         <item>A</item>
@@ -288,13 +290,13 @@
 
 
     <string-array name="it3">
-        <item>Transforms and Partial Differential Equations</item>
+        <item>Transforms and Partial Differential   Equations</item>
         <item>Programming and Data Structure II</item>
         <item>Database Management Systems</item>
         <item>Computer Architecture</item>
         <item>Analog and Digital Communication</item>
         <item>Environmental Science and Engineering</item>
-        <item>Programming and Data Structure Laboratory II</item>
+        <item>Programming and Data Structure   Laboratory II</item>
         <item>Database Management Systems Laboratory</item>
         <item>Digital Communication Laboratory</item>
 

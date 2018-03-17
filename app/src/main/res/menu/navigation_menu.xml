@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:title="Show Saved GPA" android:id="@+id/showgpa1"></item>
+    <item android:title="Show Saved CGPA" android:id="@+id/showcgpa1"></item>
+
+</menu>

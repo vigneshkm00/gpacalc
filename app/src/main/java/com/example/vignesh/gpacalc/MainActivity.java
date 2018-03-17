@@ -1,9 +1,16 @@
 package com.example.vignesh.gpacalc;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.ActionBarContextView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,19 +24,26 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,NavigationView.OnNavigationItemSelectedListener{
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     static String  sums,crdts;
    static int credit=0;
    static float sum=0;
-   float su;
-   int cr;
+   static float su;
+   static int cr;
+   Button show;
+   private DrawerLayout drl;
+   private ActionBarDrawerToggle adt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        drl = (DrawerLayout) findViewById(R.id.drawer_layout);
+        adt = new ActionBarDrawerToggle(this,drl,R.string.open,R.string.close);
+        drl.addDrawerListener(adt);
+        adt.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // tool.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         Spinner spin = (Spinner) findViewById(R.id.spinner);
         Spinner spin2 = (Spinner) findViewById(R.id.spinner2);
@@ -94,7 +108,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                                   depsem.putString("sem",x1);
                                                   depsem.putString("mode", mode);
                                                   s.putExtras(depsem);
-                                                  switch (y)
+                                                  startActivityForResult(s,x);
+                                                  /*switch (y)
                                                   {
                                                       case 1: startActivityForResult(s,1);
                                                           break;
@@ -113,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                                       case 8: startActivityForResult(s,8);
                                                           break;
 
-                                                  }
+                                                  }*/
 
                                               }
                                           }
@@ -128,6 +143,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         String sem = s3.getSelectedItem().toString();
         int sems1 = Integer.parseInt(sem);
         super.onActivityResult(requestCode, resultCode, data);
+        su = su + Float.parseFloat(data.getStringExtra("sum"));
+        cr = cr + Integer.parseInt(data.getStringExtra("credit"));
+        if(resultCode==sems1) {
+            showresult();
+        }
+        /*
         if (resultCode == 1) {
             su = su + Float.parseFloat(data.getStringExtra("sum"));
             cr = cr + Integer.parseInt(data.getStringExtra("credit"));
@@ -184,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             if(sems1==8) {
                showresult();
             }
-        }
+        }*/
     }
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
@@ -213,10 +234,28 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     {
         int id=item.getItemId();
         if(id==R.id.abt)
+        {
             return true;
-        return true;
+        }
+
+        if(adt.onOptionsItemSelected(item))
+        {
+            return true;
+        }
+            return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if(id==R.id.showgpa1)
+        {
+          Intent i = new Intent(MainActivity.this,showgpaActivity.class);
+          startActivity(i);
+        }
+        return false;
     }
+}
 
 
 

@@ -546,7 +546,9 @@ public class Main2Activity extends AppCompatActivity implements AdapterView.OnIt
                 String totsem = getIntent().getStringExtra("totsem");
                     if(mo.equals("GPA")) {
                         Intent i = new Intent(Main2Activity.this, Main3Activity.class);
+                        i.putExtra("mode",mo);
                         i.putExtra("gpa", s);
+                        i.putExtra("sem",sem1);
                         startActivity(i);
                     }
                     if(mo.equals("CGPA"))
@@ -554,7 +556,9 @@ public class Main2Activity extends AppCompatActivity implements AdapterView.OnIt
                         Intent j = new Intent(Main2Activity.this,MainActivity.class);
                         j.putExtra("sum", sum1);
                         j.putExtra("credit", credit1);
-                      switch (sem1)
+                        setResult(sem1,j);
+                        finish();
+                     /* switch (sem1)
                         {
                             case 1:
                                 setResult(1,j);
@@ -588,7 +592,7 @@ public class Main2Activity extends AppCompatActivity implements AdapterView.OnIt
                                 setResult(8,j);
                                 finish();
                                 break;
-                        }
+                        }*/
                     }
             }
 
