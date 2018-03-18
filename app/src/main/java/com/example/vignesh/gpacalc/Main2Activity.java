@@ -40,6 +40,7 @@ public class Main2Activity extends AppCompatActivity implements AdapterView.OnIt
     int[] crdts;
     int reg12;
     float gpa, sum=0,cgpa;
+    private String[] crdtra;
 
     public Main2Activity() {
         selections = new ArrayList<String>();
@@ -545,11 +546,17 @@ public class Main2Activity extends AppCompatActivity implements AdapterView.OnIt
                 String semester = String.format("%d",sem1);
                 String mo = getIntent().getStringExtra("mode");
                 String totsem = getIntent().getStringExtra("totsem");
+                crdtra=selections.toArray(new String[0]);
                     if(mo.equals("GPA")) {
+                        final Bundle sub = new Bundle();
+                        sub.putStringArray("subj",arr);
+                        sub.putIntArray("cr", crdts);
+                        sub.putString("gpa",s);
+                        sub.putStringArray("grds",crdtra);
                         Intent i = new Intent(Main2Activity.this, Main3Activity.class);
                         i.putExtra("mode",mo);
-                        i.putExtra("gpa", s);
                         i.putExtra("sem",semester);
+                        i.putExtras(sub);
                         startActivity(i);
                     }
                     if(mo.equals("CGPA"))

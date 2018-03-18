@@ -18,22 +18,44 @@ import android.widget.Toast;
 public class Main3Activity extends AppCompatActivity implements dialogbox.dialoglistener {
 
     float s;
-    Button savbt,srebt,show;
+    Button savbt,srebt,show,savepdf;
     int credit;
     float sum,cgpa;
+    private TextView txt1;
+    private Button save;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main3);
         String mode = getIntent().getStringExtra("mode");
        // if(mode.equals("GPA"))
 
-           TextView txt1=(TextView) findViewById(R.id.textView5);
-//            txt1.setVisibility(View.VISIBLE);
-            setContentView(R.layout.activity_main3);;
-           TextView txt2 = (TextView) findViewById(R.id.textView4);
-            txt2.setVisibility(View.VISIBLE);
-            String dep = getIntent().getStringExtra("gpa");
-            txt2.setText(dep);
+        final String[] arr = getIntent().getStringArrayExtra("subj");
+        final int[] crdts = getIntent().getIntArrayExtra("cr");
+        final String[] selections = getIntent().getStringArrayExtra("grds");
+        final String dep = getIntent().getStringExtra("gpa");
+        txt1 = (TextView) findViewById(R.id.textView4);
+        txt1.setText(dep);
+        save = (Button) findViewById(R.id.savaspdf);
+     //   Toast.makeText(getApplicationContext(),selections[1]+arr[1]+crdts[1], Toast.LENGTH_SHORT).show();
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Bundle sub1 = new Bundle();
+                sub1.putStringArray("subj", arr);
+                sub1.putIntArray("cr", crdts);
+                sub1.putString("gpa", dep);
+                sub1.putStringArray("grds", selections);
+
+
+                final Intent i = new Intent(Main3Activity.this, pdfdisplay.class);
+                // i.putStringArrayListExtra("Sbj", arr);
+                i.putExtras(sub1);
+                startActivity(i);
+            }
+
+        });
 
         srebt = (Button) findViewById(R.id.sharebt);
        srebt.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +102,7 @@ public class Main3Activity extends AppCompatActivity implements dialogbox.dialog
                 Toast.makeText(getApplicationContext(),na+" "+rn+" "+g,Toast.LENGTH_SHORT).show();
             }
         });
+
     }
     public void openDialog()
     {
