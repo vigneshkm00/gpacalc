@@ -92,11 +92,11 @@ public class Main3Activity extends AppCompatActivity implements dialogbox.dialog
         SharedPreferences prefer = getSharedPreferences(regno,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefer.edit();
         String dep = getIntent().getStringExtra("gpa");
-        String sem = getIntent().getStringExtra("sem");
+        String sem1 = getIntent().getStringExtra("sem");
         editor.putString("name",name.toString());
         editor.putString("regno",regno.toString());
         editor.putString("gpa",dep.toString());
-  //      editor.putString("sem",sem.toString());
+        editor.putString("sem",sem1);
         editor.apply();
         Toast.makeText(getApplicationContext(),"save successfull",Toast.LENGTH_SHORT).show();
     }

@@ -24,7 +24,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     static String  sums,crdts;
@@ -61,6 +61,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spin.setOnItemSelectedListener(this);
         spin2.setOnItemSelectedListener(this);
         spin3.setOnItemSelectedListener(this);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        // set item as selected to persist highlight
+                        menuItem.setChecked(true);
+                        // close drawer when item is tapped
+                        drl.closeDrawers();
+                        int id1 = menuItem.getItemId();
+                        int id2 = R.id.showgpa1;
+                        if(id1 == id2)
+                        {
+                            Intent i = new Intent(MainActivity.this,showgpaActivity.class);
+                            startActivity(i);
+                            Toast.makeText(getApplicationContext(),"open gpa show",Toast.LENGTH_SHORT).show();
+                        }
+
+                        return true;
+                    }
+                });
     }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -245,16 +266,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if(id==R.id.showgpa1)
-        {
-          Intent i = new Intent(MainActivity.this,showgpaActivity.class);
-          startActivity(i);
-        }
-        return false;
-    }
 }
 
 

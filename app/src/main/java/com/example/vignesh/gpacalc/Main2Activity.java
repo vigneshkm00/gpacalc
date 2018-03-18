@@ -542,13 +542,14 @@ public class Main2Activity extends AppCompatActivity implements AdapterView.OnIt
              //   String cgpa1 = String.format("%.2f",cgpa);
                 String sum1 = String.format("%f",sum);
                 String credit1 = String.format("%d",credits);
+                String semester = String.format("%d",sem1);
                 String mo = getIntent().getStringExtra("mode");
                 String totsem = getIntent().getStringExtra("totsem");
                     if(mo.equals("GPA")) {
                         Intent i = new Intent(Main2Activity.this, Main3Activity.class);
                         i.putExtra("mode",mo);
                         i.putExtra("gpa", s);
-                        i.putExtra("sem",sem1);
+                        i.putExtra("sem",semester);
                         startActivity(i);
                     }
                     if(mo.equals("CGPA"))
