@@ -71,10 +71,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         // close drawer when item is tapped
                         drl.closeDrawers();
                         int id1 = menuItem.getItemId();
-                        int id2 = R.id.showgpa1;
-                        if(id1 == id2)
+                        if(id1 == R.id.showgpa1)
                         {
                             Intent i = new Intent(MainActivity.this,showgpaActivity.class);
+                            i.putExtra("mode","GPA");
+                            startActivity(i);
+                            Toast.makeText(getApplicationContext(),"open gpa show",Toast.LENGTH_SHORT).show();
+                        }
+                        if (id1 == R.id.showcgpa1)
+                        {
+                            Intent i = new Intent(MainActivity.this,showgpaActivity.class);
+                            i.putExtra("mode","CGPA");
                             startActivity(i);
                             Toast.makeText(getApplicationContext(),"open gpa show",Toast.LENGTH_SHORT).show();
                         }
@@ -242,12 +249,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         int selectedId = radioGroup.getCheckedRadioButtonId();
         radioButton = (RadioButton) findViewById(selectedId);
         String mode1 = radioButton.getText().toString();
-        Intent i = new Intent(MainActivity.this, Main6Activity.class);
+        Spinner s3 = (Spinner) findViewById(R.id.spinner3);
+        String sem = s3.getSelectedItem().toString();
+        Intent i = new Intent(MainActivity.this, Main3Activity.class);
         String su1 = String.format("%f",su);
         String cr1 = String.format("%d",cr);
         i.putExtra("sum",su1);
         i.putExtra("credit",cr1);
         i.putExtra("mode",mode1);
+        i.putExtra("sem",sem);
         startActivity(i);
     }
     @Override
