@@ -15,11 +15,12 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="38dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +30,6 @@
             android:id="@+id/textView3"
             android:layout_width="167dp"
             android:layout_height="match_parent"
-            android:background="@drawable/rounded_edge"
             android:text="Department"
             android:textAlignment="center"
             android:textColor="@android:color/black"
@@ -42,7 +42,9 @@
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorAccent"
             android:entries="@array/Dept"
+            android:popupBackground="#FF8C00"
             android:textAlignment="center"
             android:visibility="visible"
             tools:layout_editor_absoluteX="145dp"
@@ -50,21 +52,21 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="56dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="168dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_edge"
+
             android:text="Semester"
             android:textAlignment="center"
             android:textColor="@android:color/black"
@@ -78,7 +80,9 @@
             android:id="@+id/spinner3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorAccent"
             android:entries="@array/sem"
+            android:popupBackground="#FF8C00"
             android:textAlignment="center"
             android:visibility="visible"
             tools:layout_editor_absoluteX="220dp"
@@ -86,21 +90,21 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="208dp"
+        android:layout_marginTop="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="168dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_edge"
             android:text="Regulation"
             android:textAlignment="center"
             android:textColor="@android:color/black"
@@ -113,7 +117,9 @@
             android:id="@+id/spinner2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
             android:entries="@array/Regu"
+            android:popupBackground="#FF8C00"
             android:textAlignment="center"
             android:visibility="visible"
             tools:layout_editor_absoluteX="206dp"
@@ -127,15 +133,15 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="344dp"
+        android:layout_marginTop="8dp"
         android:text="Next"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintHorizontal_bias="0.84"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/rdgrp"
+        app:layout_constraintVertical_bias="0.184" />
 
     <RadioGroup
         android:id="@+id/rdgrp"
@@ -143,11 +149,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="252dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         tools:ignore="MissingConstraints">
 
         <RadioButton

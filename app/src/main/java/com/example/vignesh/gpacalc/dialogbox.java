@@ -34,12 +34,12 @@ public class dialogbox extends AppCompatDialogFragment {
                 .setPositiveButton("submit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String name1 = name.getText().toString();
+           //             String name1 = name.getText().toString();
                         String regno1 = regno.getText().toString();
-                        listener.applytext(name1,regno1);
+                        listener.applytext(regno1);
                     }
                 });
-        name = view.findViewById(R.id.name);
+      //  name = view.findViewById(R.id.name);
         regno = view.findViewById(R.id.regno);
         return builder.create();
     }
@@ -56,7 +56,7 @@ public class dialogbox extends AppCompatDialogFragment {
 
     }
 public interface dialoglistener{
-        void applytext(String name,String regno);
+        void applytext(String regno);
 
 }
 }

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -31,7 +32,7 @@ public class Main2Activity extends AppCompatActivity implements AdapterView.OnIt
     ListView lst, ls2;
     Spinner spr;
     TextView txt;
-    FloatingActionButton btn;
+    Button btn;
     List<Integer> points;
     static int semester =1;
     List<String> selections;
@@ -56,7 +57,7 @@ public class Main2Activity extends AppCompatActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        btn = (FloatingActionButton) findViewById(R.id.btn1);
+        btn = (Button) findViewById(R.id.btn1);
         txt = (TextView) findViewById(R.id.textView);
         lst = (ListView) findViewById(R.id.listvm);
         ls2 = (ListView) findViewById(R.id.listvm2);
@@ -566,41 +567,6 @@ public class Main2Activity extends AppCompatActivity implements AdapterView.OnIt
                         j.putExtra("credit", credit1);
                         setResult(sem1,j);
                         finish();
-                     /* switch (sem1)
-                        {
-                            case 1:
-                                setResult(1,j);
-                                finish();
-                                break;
-                            case 2:
-                                setResult(2,j);
-                                finish();
-                                break;
-                            case 3:
-                                setResult(3,j);
-                                finish();
-                                break;
-                            case 4:
-                                setResult(4,j);
-                                finish();
-                                break;
-                            case 5:
-                                setResult(5,j);
-                                finish();
-                                break;
-                            case 6:
-                                setResult(6,j);
-                                finish();
-                                break;
-                            case 7:
-                                setResult(7,j);
-                                finish();
-                                break;
-                            case 8:
-                                setResult(8,j);
-                                finish();
-                                break;
-                        }*/
                     }
             }
 

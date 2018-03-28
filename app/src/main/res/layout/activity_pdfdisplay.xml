@@ -67,7 +67,7 @@
     <TextView
         android:id="@+id/textView9"
         android:layout_width="292dp"
-        android:layout_height="331dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/disp"

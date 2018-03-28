@@ -15,13 +15,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class Main3Activity extends AppCompatActivity implements dialogbox.dialoglistener {
 
     float s;
     Button savbt,srebt,show,savepdf;
     int credit;
     float sum,cgpa;
-    private TextView txt1;
+    private TextView txt1,txt2;
     private Button save;
 
     @Override
@@ -29,80 +33,91 @@ public class Main3Activity extends AppCompatActivity implements dialogbox.dialog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
         String mode = getIntent().getStringExtra("mode");
-       // if(mode.equals("GPA"))
+       if(mode.equals("GPA")) {
+           final String[] arr = getIntent().getStringArrayExtra("subj");
+           final int[] crdts = getIntent().getIntArrayExtra("cr");
+           final String[] selections = getIntent().getStringArrayExtra("grds");
+           final String dep = getIntent().getStringExtra("gpa");
+           txt1 = (TextView) findViewById(R.id.textView4);
+           txt2 = (TextView) findViewById(R.id.textView5);
+           txt2.setText("Your GPA");
+           txt1.setText(dep);
+           save = (Button) findViewById(R.id.savaspdf);
+           //   Toast.makeText(getApplicationContext(),selections[1]+arr[1]+crdts[1], Toast.LENGTH_SHORT).show();
+           save.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   final Bundle sub1 = new Bundle();
+                   sub1.putStringArray("subj", arr);
+                   sub1.putIntArray("cr", crdts);
+                   sub1.putString("gpa", dep);
+                   sub1.putStringArray("grds", selections);
 
-        final String[] arr = getIntent().getStringArrayExtra("subj");
-        final int[] crdts = getIntent().getIntArrayExtra("cr");
-        final String[] selections = getIntent().getStringArrayExtra("grds");
-        final String dep = getIntent().getStringExtra("gpa");
-        txt1 = (TextView) findViewById(R.id.textView4);
-        txt1.setText(dep);
-        save = (Button) findViewById(R.id.savaspdf);
-     //   Toast.makeText(getApplicationContext(),selections[1]+arr[1]+crdts[1], Toast.LENGTH_SHORT).show();
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Bundle sub1 = new Bundle();
-                sub1.putStringArray("subj", arr);
-                sub1.putIntArray("cr", crdts);
-                sub1.putString("gpa", dep);
-                sub1.putStringArray("grds", selections);
 
+                   final Intent i = new Intent(Main3Activity.this, pdfdisplay.class);
+                   // i.putStringArrayListExtra("Sbj", arr);
+                   i.putExtras(sub1);
+                   startActivity(i);
+               }
 
-                final Intent i = new Intent(Main3Activity.this, pdfdisplay.class);
-                // i.putStringArrayListExtra("Sbj", arr);
-                i.putExtras(sub1);
-                startActivity(i);
-            }
+           });
 
-        });
-
-        srebt = (Button) findViewById(R.id.sharebt);
-       srebt.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Intent si = new Intent();
-               si.setAction(Intent.ACTION_SEND);
-               si.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
-               si.setType("text/plain");
-               startActivity(Intent.createChooser(si,"Send this message to"));
-           }
-       });
-       savbt = (Button) findViewById(R.id.savebt);
-       savbt.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               openDialog();
-           }
-       });
-      /*  else
-        {
-          TextView  txt1=(TextView) findViewById(R.id.textView8);
-            txt1.setVisibility(View.VISIBLE);
-            setContentView(R.layout.activity_main3);;
-          TextView  txt2 = (TextView) findViewById(R.id.textView9);
-            txt2.setVisibility(View.VISIBLE);
-            String su = getIntent().getStringExtra("sum");
-            String  cr = getIntent().getStringExtra("credit");
-            credit=Integer.parseInt(cr);
-            sum=Float.parseFloat(su);
-            cgpa=(Float)sum/credit;
-            String cgpa1 = String.format("%f",cgpa).toString();
-            txt2.setText(cgpa1);
-
-        }*/
-        show = (Button) findViewById(R.id.button2);
-        show.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences prefer = getSharedPreferences("411714",Context.MODE_PRIVATE);
-                String na = prefer.getString("name","").toString();
-                String rn = prefer.getString("regno","").toString();
-                String g = prefer.getString("gpa","").toString();
-                Toast.makeText(getApplicationContext(),na+" "+rn+" "+g,Toast.LENGTH_SHORT).show();
-            }
-        });
-
+           srebt = (Button) findViewById(R.id.sharebt);
+           srebt.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   Intent si = new Intent();
+                   si.setAction(Intent.ACTION_SEND);
+                   si.putExtra(Intent.EXTRA_TEXT, "GPA:" + dep + "\nThis GPA was calculated by the app \"GPA/CGPA Calculator\" Clink This Link to download.");
+                   si.setType("text/plain");
+                   startActivity(Intent.createChooser(si, "Send this message to"));
+               }
+           });
+           savbt = (Button) findViewById(R.id.savebt);
+           savbt.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   openDialog();
+               }
+           });
+       }
+      else {
+           txt1 = (TextView) findViewById(R.id.textView4);
+           String su = getIntent().getStringExtra("sum");
+           String  cr = getIntent().getStringExtra("credit");
+           txt2 = (TextView) findViewById(R.id.textView5);
+           txt2.setText("Your CGPA");
+           credit=Integer.parseInt(cr);
+           sum=Float.parseFloat(su);
+           cgpa=(Float)sum/credit;
+           final String cgpa1 = String.format("%.2f",cgpa).toString();
+           txt1.setText(cgpa1);
+           savbt = (Button) findViewById(R.id.savebt);
+           savbt.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   openDialog();
+               }
+           });
+           srebt = (Button) findViewById(R.id.sharebt);
+           srebt.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   Intent si = new Intent();
+                   si.setAction(Intent.ACTION_SEND);
+                   si.putExtra(Intent.EXTRA_TEXT, "CGPA:"+cgpa1+"\nThis CGPA was calculated by the app \"GPA/CGPA Calculator\" Clink This Link to download.");
+                   si.setType("text/plain");
+                   startActivity(Intent.createChooser(si,"Send this message to"));
+                   savbt = (Button) findViewById(R.id.savebt);
+                   savbt.setOnClickListener(new View.OnClickListener() {
+                       @Override
+                       public void onClick(View v) {
+                           openDialog();
+                       }
+                   });
+               }
+           });
+       }
     }
     public void openDialog()
     {
@@ -111,16 +126,35 @@ public class Main3Activity extends AppCompatActivity implements dialogbox.dialog
     }
 
     @Override
-    public void applytext(String name, String regno) {
-        SharedPreferences prefer = getSharedPreferences(regno,Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefer.edit();
-        String dep = getIntent().getStringExtra("gpa");
+    public void applytext(String regno) {
+        String dep;
+        String mod = getIntent().getStringExtra("mode");
+        if(mod.equals("GPA")) {
+             dep = getIntent().getStringExtra("gpa");
+        }
+        else
+        {
+            dep = String.format("%.2f",cgpa).toString();
+            regno = regno + "c";
+        }
         String sem1 = getIntent().getStringExtra("sem");
-        editor.putString("name",name.toString());
-        editor.putString("regno",regno.toString());
-        editor.putString("gpa",dep.toString());
-        editor.putString("sem",sem1);
-        editor.apply();
+        String space = "      ";
+        String nextl ="\n";
+        String[] sem11 = new String[50],gpa1 = new String[50];
+        try {
+            FileOutputStream fileOutputStream = openFileOutput(regno,MODE_APPEND);
+            fileOutputStream.write(sem1.getBytes());
+            fileOutputStream.write(space.getBytes());
+            fileOutputStream.write(dep.getBytes());
+            fileOutputStream.write(nextl.getBytes());
+            fileOutputStream.close();
+            Toast.makeText(getApplicationContext(),"file written successfully",Toast.LENGTH_SHORT).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Toast.makeText(getApplicationContext(),"save successfull",Toast.LENGTH_SHORT).show();
     }
 }
