@@ -2,6 +2,8 @@ package com.example.vignesh.gpacalc;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,17 +24,62 @@ import java.io.IOException;
 public class Main3Activity extends AppCompatActivity implements dialogbox.dialoglistener {
 
     float s;
-    Button savbt,srebt,show,savepdf;
+    String mode;
     int credit;
     float sum,cgpa;
     private TextView txt1,txt2;
     private Button save;
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            String mode = getIntent().getStringExtra("mode");
+            switch (item.getItemId()) {
+                case R.id.save1:
+                    openDialog();
+                    return true;
+                case R.id.savaspdf1:
+                    if (mode.equals("GPA"))
+                    {
+                        saveaspdf();
+                    }
+                    else return true;
+                    // mTextMessage.setText(R.string.title_dashboard);
+                    return true;
+                case R.id.shareb1:
+                    if(mode.equals("GPA"))
+                    {
+                        String dep = getIntent().getStringExtra("gpa");
+                        Intent si = new Intent();
+                        si.setAction(Intent.ACTION_SEND);
+                        si.putExtra(Intent.EXTRA_TEXT, "GPA:" + dep + "\nThis GPA was calculated by the app \"GPA/CGPA Calculator\" Clink This Link to download.");
+                        si.setType("text/plain");
+                        startActivity(Intent.createChooser(si, "Send this message to"));
+                    }
+                    else
+                    {
+                        String cgpa1 = String.format("%.2f",cgpa).toString();
+                        Intent si = new Intent();
+                        si.setAction(Intent.ACTION_SEND);
+                        si.putExtra(Intent.EXTRA_TEXT, "CGPA:"+cgpa1+"\nThis CGPA was calculated by the app \"GPA/CGPA Calculator\" Clink This Link to download.");
+                        si.setType("text/plain");
+                        startActivity(Intent.createChooser(si,"Send this message to"));
+                    }
+                    //  mTextMessage.setText(R.string.title_notifications);
+                    return true;
+            }
+            return false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
-        String mode = getIntent().getStringExtra("mode");
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        mode = getIntent().getStringExtra("mode");
        if(mode.equals("GPA")) {
            final String[] arr = getIntent().getStringArrayExtra("subj");
            final int[] crdts = getIntent().getIntArrayExtra("cr");
@@ -42,44 +89,6 @@ public class Main3Activity extends AppCompatActivity implements dialogbox.dialog
            txt2 = (TextView) findViewById(R.id.textView5);
            txt2.setText("Your GPA");
            txt1.setText(dep);
-           save = (Button) findViewById(R.id.savaspdf);
-           //   Toast.makeText(getApplicationContext(),selections[1]+arr[1]+crdts[1], Toast.LENGTH_SHORT).show();
-           save.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                   final Bundle sub1 = new Bundle();
-                   sub1.putStringArray("subj", arr);
-                   sub1.putIntArray("cr", crdts);
-                   sub1.putString("gpa", dep);
-                   sub1.putStringArray("grds", selections);
-
-
-                   final Intent i = new Intent(Main3Activity.this, pdfdisplay.class);
-                   // i.putStringArrayListExtra("Sbj", arr);
-                   i.putExtras(sub1);
-                   startActivity(i);
-               }
-
-           });
-
-           srebt = (Button) findViewById(R.id.sharebt);
-           srebt.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                   Intent si = new Intent();
-                   si.setAction(Intent.ACTION_SEND);
-                   si.putExtra(Intent.EXTRA_TEXT, "GPA:" + dep + "\nThis GPA was calculated by the app \"GPA/CGPA Calculator\" Clink This Link to download.");
-                   si.setType("text/plain");
-                   startActivity(Intent.createChooser(si, "Send this message to"));
-               }
-           });
-           savbt = (Button) findViewById(R.id.savebt);
-           savbt.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                   openDialog();
-               }
-           });
        }
       else {
            txt1 = (TextView) findViewById(R.id.textView4);
@@ -92,37 +101,43 @@ public class Main3Activity extends AppCompatActivity implements dialogbox.dialog
            cgpa=(Float)sum/credit;
            final String cgpa1 = String.format("%.2f",cgpa).toString();
            txt1.setText(cgpa1);
-           savbt = (Button) findViewById(R.id.savebt);
-           savbt.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                   openDialog();
-               }
-           });
-           srebt = (Button) findViewById(R.id.sharebt);
-           srebt.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                   Intent si = new Intent();
-                   si.setAction(Intent.ACTION_SEND);
-                   si.putExtra(Intent.EXTRA_TEXT, "CGPA:"+cgpa1+"\nThis CGPA was calculated by the app \"GPA/CGPA Calculator\" Clink This Link to download.");
-                   si.setType("text/plain");
-                   startActivity(Intent.createChooser(si,"Send this message to"));
-                   savbt = (Button) findViewById(R.id.savebt);
-                   savbt.setOnClickListener(new View.OnClickListener() {
-                       @Override
-                       public void onClick(View v) {
-                           openDialog();
-                       }
-                   });
-               }
-           });
        }
     }
     public void openDialog()
     {
     dialogbox dialogbox = new dialogbox();
     dialogbox.show(getSupportFragmentManager(),"user details");
+    }
+    public void saveaspdf()
+    {
+        final String[] arr = getIntent().getStringArrayExtra("subj");
+        final int[] crdts = getIntent().getIntArrayExtra("cr");
+        final String[] selections = getIntent().getStringArrayExtra("grds");
+        final String dep = getIntent().getStringExtra("gpa");
+        txt1 = (TextView) findViewById(R.id.textView4);
+        txt2 = (TextView) findViewById(R.id.textView5);
+        txt2.setText("Your GPA");
+        txt1.setText(dep);
+        save = (Button) findViewById(R.id.savaspdf);
+        //   Toast.makeText(getApplicationContext(),selections[1]+arr[1]+crdts[1], Toast.LENGTH_SHORT).show();
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Bundle sub1 = new Bundle();
+                sub1.putStringArray("subj", arr);
+                sub1.putIntArray("cr", crdts);
+                sub1.putString("gpa", dep);
+                sub1.putStringArray("grds", selections);
+
+
+                final Intent i = new Intent(Main3Activity.this, pdfdisplay.class);
+                // i.putStringArrayListExtra("Sbj", arr);
+                i.putExtras(sub1);
+                startActivity(i);
+            }
+
+        });
+
     }
 
     @Override
