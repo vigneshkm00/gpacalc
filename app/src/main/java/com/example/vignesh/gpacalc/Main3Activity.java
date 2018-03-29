@@ -81,9 +81,6 @@ public class Main3Activity extends AppCompatActivity implements dialogbox.dialog
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         mode = getIntent().getStringExtra("mode");
        if(mode.equals("GPA")) {
-           final String[] arr = getIntent().getStringArrayExtra("subj");
-           final int[] crdts = getIntent().getIntArrayExtra("cr");
-           final String[] selections = getIntent().getStringArrayExtra("grds");
            final String dep = getIntent().getStringExtra("gpa");
            txt1 = (TextView) findViewById(R.id.textView4);
            txt2 = (TextView) findViewById(R.id.textView5);
@@ -114,30 +111,16 @@ public class Main3Activity extends AppCompatActivity implements dialogbox.dialog
         final int[] crdts = getIntent().getIntArrayExtra("cr");
         final String[] selections = getIntent().getStringArrayExtra("grds");
         final String dep = getIntent().getStringExtra("gpa");
-        txt1 = (TextView) findViewById(R.id.textView4);
-        txt2 = (TextView) findViewById(R.id.textView5);
-        txt2.setText("Your GPA");
-        txt1.setText(dep);
-        save = (Button) findViewById(R.id.savaspdf);
         //   Toast.makeText(getApplicationContext(),selections[1]+arr[1]+crdts[1], Toast.LENGTH_SHORT).show();
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 final Bundle sub1 = new Bundle();
                 sub1.putStringArray("subj", arr);
                 sub1.putIntArray("cr", crdts);
                 sub1.putString("gpa", dep);
                 sub1.putStringArray("grds", selections);
-
-
                 final Intent i = new Intent(Main3Activity.this, pdfdisplay.class);
                 // i.putStringArrayListExtra("Sbj", arr);
                 i.putExtras(sub1);
                 startActivity(i);
-            }
-
-        });
-
     }
 
     @Override

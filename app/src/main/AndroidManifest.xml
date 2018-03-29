@@ -30,7 +30,8 @@
             android:name=".Main3Activity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".showgpaActivity" />
-        <activity android:name=".pdfdisplay" />
+        <activity android:name=".pdfdisplay"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>
