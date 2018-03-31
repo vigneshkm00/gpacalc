@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/save1"
+        android:icon="@drawable/ic_save"
+        android:title="@string/save" />
+
+    <item
+        android:id="@+id/savaspdf1"
+        android:icon="@drawable/ic_savepdf"
+        android:title="SaveasPDF" />
+
+    <item
+        android:id="@+id/shareb1"
+        android:icon="@drawable/ic_share"
+        android:title="Share" />
+
+</menu>
