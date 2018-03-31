@@ -2,5 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 <item android:title="Show Saved GPA" android:id="@+id/showgpa1"></item>
     <item android:title="Show Saved CGPA" android:id="@+id/showcgpa1"></item>
+    <item android:title="Open AU Portal"
+        android:id="@+id/auportal"/>
 
 </menu>

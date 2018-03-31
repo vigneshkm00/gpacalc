@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         drl.addDrawerListener(adt);
         adt.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        // tool.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         Spinner spin = (Spinner) findViewById(R.id.spinner);
         Spinner spin2 = (Spinner) findViewById(R.id.spinner2);
         Spinner spin3 = (Spinner) findViewById(R.id.spinner3);
@@ -84,6 +83,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                             i.putExtra("mode","CGPA");
                             startActivity(i);
                             Toast.makeText(getApplicationContext(),"open gpa show",Toast.LENGTH_SHORT).show();
+                        }
+                        if (id1== R.id.auportal)
+                        {
+                            Intent i = new Intent(MainActivity.this,Web_view.class);
+                            startActivity(i);
                         }
 
                         return true;
@@ -137,27 +141,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                                   depsem.putString("mode", mode);
                                                   s.putExtras(depsem);
                                                   startActivityForResult(s,x);
-                                                  /*switch (y)
-                                                  {
-                                                      case 1: startActivityForResult(s,1);
-                                                          break;
-                                                      case 2: startActivityForResult(s,2);
-                                                          break;
-                                                      case 3: startActivityForResult(s,3);
-                                                          break;
-                                                      case 4: startActivityForResult(s,4);
-                                                          break;
-                                                      case 5: startActivityForResult(s,5);
-                                                          break;
-                                                      case 6: startActivityForResult(s,6);
-                                                          break;
-                                                      case 7: startActivityForResult(s,7);
-                                                          break;
-                                                      case 8: startActivityForResult(s,8);
-                                                          break;
-
-                                                  }*/
-
                                               }
                                           }
                                   }
@@ -176,64 +159,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if(resultCode==sems1) {
             showresult();
         }
-        /*
-        if (resultCode == 1) {
-            su = su + Float.parseFloat(data.getStringExtra("sum"));
-            cr = cr + Integer.parseInt(data.getStringExtra("credit"));
-            if(sems1==1) {
-              showresult();
-            }
 
-        }
-        if (resultCode == 2) {
-            su = su + Float.parseFloat(data.getStringExtra("sum"));
-            cr = cr + Integer.parseInt(data.getStringExtra("credit"));
-            if(sems1==2) {
-              showresult();
-            }
-        }
-        if (resultCode == 3) {
-            su = su + Float.parseFloat(data.getStringExtra("sum"));
-            cr = cr + Integer.parseInt(data.getStringExtra("credit"));
-            if(sems1==3) {
-                showresult();
-            }
-        }
-        if (resultCode == 4) {
-            su = su + Float.parseFloat(data.getStringExtra("sum"));
-            cr = cr + Integer.parseInt(data.getStringExtra("credit"));
-            if(sems1==4) {
-              showresult();
-            }
-        }
-        if (resultCode == 5) {
-            su = su + Float.parseFloat(data.getStringExtra("sum"));
-            cr = cr + Integer.parseInt(data.getStringExtra("credit"));
-            if(sems1==5) {
-          showresult();
-            }
-        }
-        if (resultCode == 6) {
-            su = su + Float.parseFloat(data.getStringExtra("sum"));
-            cr = cr + Integer.parseInt(data.getStringExtra("credit"));
-            if(sems1==6) {
-           showresult();
-            }
-        }
-        if (resultCode == 7) {
-            su = su + Float.parseFloat(data.getStringExtra("sum"));
-            cr = cr + Integer.parseInt(data.getStringExtra("credit"));
-            if(sems1==7) {
-             showresult();
-            }
-        }
-        if (resultCode == 8) {
-            su = su + Float.parseFloat(data.getStringExtra("sum"));
-            cr = cr + Integer.parseInt(data.getStringExtra("credit"));
-            if(sems1==8) {
-               showresult();
-            }
-        }*/
     }
     @Override
     public void onNothingSelected(AdapterView<?> parent) {

@@ -22,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".On_boarding"></activity>
         <activity android:name=".MainActivity" />
         <activity
             android:name=".Main2Activity"
@@ -30,8 +31,13 @@
             android:name=".Main3Activity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".showgpaActivity" />
-        <activity android:name=".pdfdisplay"
-            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".pdfdisplay"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Web_view"
+            android:parentActivityName=".MainActivity" />
+
     </application>
 
 </manifest>
