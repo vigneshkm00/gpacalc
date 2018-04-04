@@ -36,6 +36,8 @@ public class Main3Activity extends AppCompatActivity implements dialogbox.dialog
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             String mode = getIntent().getStringExtra("mode");
             switch (item.getItemId()) {
+                case R.id.hm:
+                    return true;
                 case R.id.save1:
                     openDialog();
                     return true;
@@ -120,7 +122,7 @@ public class Main3Activity extends AppCompatActivity implements dialogbox.dialog
                 final Intent i = new Intent(Main3Activity.this, pdfdisplay.class);
                 // i.putStringArrayListExtra("Sbj", arr);
                 i.putExtras(sub1);
-                startActivity(i);
+                startActivityForResult(i,101);
     }
 
     @Override

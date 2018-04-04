@@ -17,7 +17,8 @@
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
@@ -28,23 +29,26 @@
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="167dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:includeFontPadding="true"
             android:text="Department"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="20dp"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30dp"
+            android:textStyle="bold"
             android:visibility="visible"
+            app:fontFamily="@font/opensansbold"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="96dp" />
 
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorAccent"
+            android:layout_height="40dp"
+
             android:entries="@array/Dept"
-            android:popupBackground="#FF8C00"
+            android:popupBackground="?attr/colorBackgroundFloating"
             android:textAlignment="center"
             android:visibility="visible"
             tools:layout_editor_absoluteX="145dp"
@@ -57,21 +61,24 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="168dp"
-            android:layout_height="wrap_content"
-
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:text="Semester"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="20dp"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30dp"
+            android:textStyle="bold"
             android:visibility="visible"
+            app:fontFamily="@font/opensansbold"
             tools:ignore="DuplicateIds"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="96dp" />
@@ -79,10 +86,10 @@
         <Spinner
             android:id="@+id/spinner3"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorAccent"
+            android:layout_height="40dp"
+
             android:entries="@array/sem"
-            android:popupBackground="#FF8C00"
+            android:popupBackground="?attr/colorBackgroundFloating"
             android:textAlignment="center"
             android:visibility="visible"
             tools:layout_editor_absoluteX="220dp"
@@ -95,7 +102,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,23 +111,26 @@
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="168dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:fontFamily="sans-serif"
             android:text="Regulation"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp"
+            android:textStyle="bold"
             android:visibility="visible"
+            app:fontFamily="@font/opensansbold"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="203dp" />
 
         <Spinner
             android:id="@+id/spinner2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
+            android:layout_height="40dp"
+
             android:entries="@array/Regu"
-            android:popupBackground="#FF8C00"
+            android:popupBackground="?attr/colorBackgroundFloating"
             android:textAlignment="center"
             android:visibility="visible"
             tools:layout_editor_absoluteX="206dp"
@@ -128,20 +139,23 @@
 
     <Button
         android:id="@+id/button"
+        style="@android:style/Animation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@color/colorAccent"
         android:text="Next"
+        android:textColor="?attr/colorBackgroundFloating"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.762"
+        app:layout_constraintHorizontal_bias="0.782"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rdgrp"
-        app:layout_constraintVertical_bias="0.578" />
+        app:layout_constraintVertical_bias="0.283" />
 
     <RadioGroup
         android:id="@+id/rdgrp"
@@ -149,8 +163,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         tools:ignore="MissingConstraints">
@@ -176,13 +191,14 @@
 
     </RadioGroup>
 </android.support.constraint.ConstraintLayout>
+
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
-        android:color="#4141F1"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:menu="@menu/navigation_menu"
-        android:layout_gravity="start">
+        android:layout_gravity="start"
+        android:color="#4141F1"
+        app:menu="@menu/navigation_menu">
 
     </android.support.design.widget.NavigationView>
 

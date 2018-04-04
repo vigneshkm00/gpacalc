@@ -2,7 +2,10 @@
 <resources>
     <color name="colorPrimary">#4141F1</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF8C00</color>
-    <color name="colorWhite">#FFFFFF</color>
-    <color name="colorTransparentWhite">#cccccc</color>
+    <color name="colorAccent">#FF235ED6</color>
+    <color name="white">#FFFFFF</color>
+    <color name="spinnerblue">#FF235ED6</color>
+
+    <!--OnBoard-->
+
 </resources>

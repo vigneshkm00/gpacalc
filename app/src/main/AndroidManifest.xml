@@ -22,7 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".On_boarding"></activity>
         <activity android:name=".MainActivity" />
         <activity
             android:name=".Main2Activity"

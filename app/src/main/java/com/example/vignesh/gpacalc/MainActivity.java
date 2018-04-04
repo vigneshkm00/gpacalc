@@ -101,8 +101,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Spinner s3 = (Spinner) findViewById(R.id.spinner3);
      //   EditText ed = (EditText) findViewById(R.id.ed);
         String dep = s.getSelectedItem().toString();
-        String reg = s2.getSelectedItem().toString();
+        final String reg = s2.getSelectedItem().toString();
         final String sem = s3.getSelectedItem().toString();
+       final int se = Integer.parseInt(sem);
+
 
        // String pcg = ed.getText().toString();
         final String gpamod = "gp";
@@ -126,23 +128,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                       int selectedId = radioGroup.getCheckedRadioButtonId();
                                       radioButton = (RadioButton) findViewById(selectedId);
                                       String mode = radioButton.getText().toString();
-                                      if(mode.equals("GPA")) {
-                                          depsem.putString("mode", mode);
-                                          Intent i = new Intent(MainActivity.this, Main2Activity.class);
-                                          i.putExtras(depsem);
-                                          startActivity(i);
-                                      }
-                                      else
-                                          if (mode.equals("CGPA")) {
-                                              for (int x = semes,y=1; x >=1; x--,y++) {
+                                      if(reg.equals("2013")||(reg.equals("2017")&&se<=2)) {
+
+
+                                          if (mode.equals("GPA")) {
+                                              depsem.putString("mode", mode);
+                                              Intent i = new Intent(MainActivity.this, Main2Activity.class);
+                                              i.putExtras(depsem);
+                                              startActivity(i);
+                                          } else if (mode.equals("CGPA")) {
+                                              for (int x = semes, y = 1; x >= 1; x--, y++) {
                                                   Intent s = new Intent(MainActivity.this, Main2Activity.class);
-                                                  String x1 = String.format("%d",x);
-                                                  depsem.putString("sem",x1);
+                                                  String x1 = String.format("%d", x);
+                                                  depsem.putString("sem", x1);
                                                   depsem.putString("mode", mode);
                                                   s.putExtras(depsem);
-                                                  startActivityForResult(s,x);
+                                                  startActivityForResult(s, x);
                                               }
                                           }
+                                      }
+                                      else Toast.makeText(getApplicationContext(),"please select appropriate semester for 2017 regulation",Toast.LENGTH_SHORT).show();
                                   }
                               }
         );
@@ -165,11 +170,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu men){
-        getMenuInflater().inflate(R.menu.main_menu, men);
-        return true;
-    }
+
     public void showresult()
     {
         int selectedId = radioGroup.getCheckedRadioButtonId();
@@ -189,11 +190,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        int id=item.getItemId();
-        if(id==R.id.abt)
-        {
-            return true;
-        }
 
         if(adt.onOptionsItemSelected(item))
         {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1B2A34"
+    android:background="@color/white"
     tools:context="com.example.vignesh.gpacalc.Main3Activity">
 
     <TextView
@@ -17,8 +17,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="172dp"
         android:textAlignment="center"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="41dp"
+        android:textColor="#000000"
+        android:textSize="40dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
@@ -36,8 +36,9 @@
         android:gravity="center"
         android:text=""
         android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="30sp"
+        android:fontFamily="@font/opensansbold"
+        android:textColor="@color/colorPrimary"
+        android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
